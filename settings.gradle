@@ -1,1 +1,17 @@
-rootProject.name = 'api'
+rootProject.name = 'DeepThoughts'
+
+pluginManagement {
+    resolutionStrategy {
+        eachPlugin {
+            if (requested.id.namespace == "com.DeepThoughts.gradle") {
+                useModule("com.DeepThoughts.gradle:${requested.id.name}:${com.DeepThoughts.gradle.MavenPublishPluginVersion.version}")
+            }
+        }
+    }
+    repositories {
+        gradlePluginPortal()
+        maven {
+            url = uri("https://maven.example.com")
+        }
+    }
+}

@@ -1,0 +1,26 @@
+# Name the workflow (optional).
+name: "Validate Gradle Wrapper"
+
+# Define when the workflow should be triggered.
+on:
+  push:
+    branches: [ main ] # Trigger on push to main branch.
+  pull_request:
+    branches: [ main ] # Trigger on pull request targeting main branch.
+
+# Define the jobs to run as part of the workflow.
+jobs:
+  # Name the job (optional).
+  validation:
+    # Name the step in the job (optional).
+    name: "Validation"
+    # Define the runner environment as a Docker container.
+    runs-on: ubuntu-latest
+    container:
+      image: docker://<docker-image-url> # Replace with the URL of your Docker image.
+    # Define the steps to run in the job.
+    steps:
+      # Check out the repository's code.
+      - uses: actions/checkout@v3
+      # Validate the Gradle Wrapper using the gradle/wrapper-validation-action.
+      - uses: gradle/wrapper-validation-action@v1
